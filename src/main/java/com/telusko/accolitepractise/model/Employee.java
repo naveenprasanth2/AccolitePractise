@@ -1,7 +1,4 @@
 package com.telusko.accolitepractise.model;
-
-import com.telusko.accolitepractise.validations.NameValidation;
-import com.telusko.accolitepractise.validations.groups.OnCreate;
 import lombok.Data;
 
 @Data
