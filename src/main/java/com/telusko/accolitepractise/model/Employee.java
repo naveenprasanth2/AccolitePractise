@@ -2,14 +2,11 @@ package com.telusko.accolitepractise.model;
 
 import com.telusko.accolitepractise.validations.NameValidation;
 import com.telusko.accolitepractise.validations.groups.OnCreate;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class Employee {
     private int id;
-    @NameValidation(groups =  OnCreate.class)
     private String firstName;
     private String lastName;
     private double salary;

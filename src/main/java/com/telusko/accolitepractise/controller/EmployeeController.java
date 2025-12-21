@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
 @AllArgsConstructor
 @RequestMapping("/employee")
@@ -30,7 +31,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Employee> addEmployee(@RequestBody @Validated(value = OnCreate.class) EmployeeDto employeeDto) {
+    public ResponseEntity<Employee> addEmployee(@Validated(value = OnCreate.class) @RequestBody EmployeeDto employeeDto) {
         return new ResponseEntity<>(employeeService.addEmployee(EmployeeMapper.INSTANCE.employeeDtoToEmployee(employeeDto)), HttpStatus.OK);
     }
 }
