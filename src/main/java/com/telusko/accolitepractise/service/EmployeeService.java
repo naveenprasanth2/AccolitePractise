@@ -12,9 +12,10 @@ import java.util.List;
 @Service
 public class EmployeeService {
     private final List<Employee> employees;
-
+    private final DepartmentService departmentService;
     @Autowired
-    public EmployeeService() {
+    public EmployeeService(DepartmentService departmentService) {
+        this.departmentService = departmentService;
         this.employees = new ArrayList<>();
     }
 
@@ -28,6 +29,8 @@ public class EmployeeService {
 
     public Employee addEmployee(Employee employee) {
         employees.add(employee);
+        departmentService.getDepartments().stream().filter(x -> x.getId().equals(employee.getDepartmentId()))
+                .findFirst().ifPresent(department -> department.getEmployees().add(employee));
         return employees.getLast();
     }
 }

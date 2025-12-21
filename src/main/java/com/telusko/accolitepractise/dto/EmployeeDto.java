@@ -10,6 +10,7 @@ public record EmployeeDto(
         String lastName,
         double salary,
         int phoneNumber,
-        String email
+        String email,
+        Long departmentId
 ) {
 }

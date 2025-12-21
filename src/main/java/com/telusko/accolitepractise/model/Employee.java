@@ -9,6 +9,7 @@ public class Employee {
     private double salary;
     private int phoneNumber;
     private String email;
+    private Long departmentId;
 
     @Override
     public boolean equals (Object o){
