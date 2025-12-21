@@ -23,6 +23,10 @@ public class DepartmentController {
     }
     @GetMapping("/all")
     public ResponseEntity<List<DepartmentDto>> getAllDepartments() {
-        return new ResponseEntity<>(DepartmentMapper.INSTANCE.departmentsToDepartmentDtos(departmentService.getDepartments()), HttpStatus.OK);
+        return new ResponseEntity<>(DepartmentMapper.INSTANCE.departmentsToDepartmentDtos(departmentService.getAllDepartments()), HttpStatus.OK);
+    }
+    @GetMapping("/size")
+    public ResponseEntity<List<DepartmentDto>> getAllDepartmentsBySize(@RequestParam("page") int page, @RequestParam("size") int size) {
+        return new ResponseEntity<>(DepartmentMapper.INSTANCE.departmentsToDepartmentDtos(departmentService.getDepartments(page, size)), HttpStatus.OK);
     }
 }
