@@ -1,34 +1,25 @@
 package com.telusko.accolitepractise.service;
 
-import lombok.Getter;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.telusko.accolitepractise.repository.EmployeeRepo;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.telusko.accolitepractise.model.Employee;
-
-import java.util.ArrayList;
 import java.util.List;
 
-@Getter
 @Service
+@AllArgsConstructor
 public class EmployeeService {
-    private final List<Employee> employees;
-    private final DepartmentService departmentService;
-    @Autowired
-    public EmployeeService(DepartmentService departmentService) {
-        this.departmentService = departmentService;
-        this.employees = new ArrayList<>();
-    }
+    private final EmployeeRepo employeeRepo;
 
-    public void setEmployees(List<Employee> employees) {
-        this.employees.addAll(employees);
-    }
-
-    public Employee getEmployee(int id) {
-        return employees.get(id);
+    public Employee findById(int id) {
+        return employeeRepo.findById(id).orElse(null);
     }
 
     public Employee addEmployee(Employee employee) {
-        employees.add(employee);
-        return employees.getLast();
+        return employeeRepo.save(employee);
+    }
+
+    public List<Employee> findAllEmployees(){
+        return employeeRepo.findAll();
     }
 }

@@ -22,12 +22,12 @@ public class EmployeeController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") int employeeId) {
-        return new ResponseEntity<>(employeeService.getEmployee(employeeId), HttpStatus.OK);
+        return new ResponseEntity<>(employeeService.findById(employeeId), HttpStatus.OK);
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<Employee>> getAllEmployees() {
-        return new ResponseEntity<>(employeeService.getEmployees(), HttpStatus.OK);
+        return new ResponseEntity<>(employeeService.findAllEmployees(), HttpStatus.OK);
     }
 
     @PostMapping("/add")

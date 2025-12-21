@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class DepartmentService {
@@ -30,5 +31,9 @@ public class DepartmentService {
         Sort sort = Sort.by(Sort.Direction.ASC, "departmentName");
         Pageable pageable = PageRequest.of(page, size, sort);
         return  departmentRepo.findAll(pageable).getContent();
+    }
+
+    public Department getDepartmentById(long id) {
+        return departmentRepo.findById(id).orElseThrow(NoSuchElementException::new);
     }
 }
